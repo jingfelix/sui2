@@ -1,0 +1,100 @@
+{
+    "apps" : [
+      {
+        "name": "Cloud",
+        "items": [
+          {"name":"AliCloud","url":"ssh://AliCloud","icon":"cloud"},
+          {"name":"Clash","url":"http://immortal.wrt:9090/ui/dashboard/#/?host=192.168.1.20&port=9090&secret=123456","icon":"cat"},
+          {"name":"File Browser","url":"http://file.browser:8000","icon":"file-cloud-outline"},
+          {"name":"intelNUC","url":"ssh://intelNUC-out","icon":"server"},
+          {"name":"OpenWrt","url":"http://open.wrt","icon":"router-network"},
+          {"name":"ImmortalWrt","url":"http://immortal.wrt","icon":"router-wireless"},
+          {"name":"Blog","url":"https://www.xcodesucks.top", "icon":"library-shelves"},
+          {"name":"Lab","url":"ssh://lab-school", "icon":"desktop-classic"}
+        ]
+      },
+      {
+        "name": "TV",
+        "items": [
+          {"name":"ddys","url":"https://ddys.tv","icon":"filmstrip"},
+          {"name":"Bahamut","url":"https://ani.gamer.com.tw/","icon":"television-box"},
+          {"name":"NetEase","url":"https://music.163.com","icon":"music"},
+          {"name":"Youtube","url":"https://www.youtube.com","icon":"youtube"}
+        ]
+      }
+    ],
+    "bookmarks" : [
+      {
+        "category": "Communicate",
+        "links": [
+          {
+            "name": "Gmail",
+            "url": "https://gmail.com"
+          }
+        ]
+      },
+      {
+        "category": "Cloud",
+        "links": [
+          {
+            "name": "Drive",
+            "url": "https://drive.google.com"
+          }
+        ]
+      },
+      {
+        "category": "Design",
+        "links": [
+          {
+            "name": "Awwwards",
+            "url": "https://awwwards.com"
+          }
+        ]
+      },
+      {
+        "category": "Dev",
+        "links": [
+          {
+            "name": "GitHub",
+            "url": "https://github.com"
+          }
+        ]
+      },
+      {
+        "category": "Lifestyle",
+        "links": [
+          {
+            "name": "Design Milk",
+            "url": "https://design-milk.com/category/interior-design/"
+          }
+        ]
+      },
+      {
+        "category": "Media",
+        "links": [
+          {
+            "name": "Spotify",
+            "url": "https://open.spotify.com"
+          }
+        ]
+      },
+      {
+        "category": "Reading",
+        "links": [
+          {
+            "name": "Medium",
+            "url": "https://medium.com"
+          }
+        ]
+      },
+      {
+        "category": "Tech",
+        "links": [
+          {
+            "name": "The Verge",
+            "url": "https://theverge.com/"
+          }
+        ]
+      }
+    ]
+  }
