@@ -2,7 +2,7 @@
 
 *a startpage for your server and / or new tab page*
 
-Forked from [sui](https://github.com/jeroenpardon/sui), sui2 adds
+Originally forked from [sui](https://github.com/jeroenpardon/sui), sui2 adds
 new features like keyboard navigation and PWA to boost your productivity.
 It's a complete refactor, brings new technologies for easier development & deployment.
 
@@ -29,6 +29,8 @@ To build the project, simply follow the steps below.
    There are various hosting services like GitHub Pages, Cloudflare Pages, Netlify.
    Examples will be documented later on.
 
+If you are happy with the look and functionality of sui2, it is recommended to use this project as a submodule rather than fork it. Please checkout [reorx/start](https://github.com/reorx/start) as an example for how to use it in another project, and how to build with GitHub Actions and deploy to Cloudflare Pages.
+
 ## Deploy using Docker
 
 > Notice: to make the preview page in live editor work more predictable, Docker image does not provide PWA support
@@ -43,7 +45,7 @@ The image is hosted on Docker hub at: [reorx/sui2](https://hub.docker.com/r/reor
 
 Run the following command to get started:
 
-```
+```bash
 docker run --rm -t -p 3000:3000 -v data:/data reorx/sui2
 ```
 
@@ -56,18 +58,68 @@ After the container is alive, open `http://DOCKER_HOST:3000/` to see the initial
 
 For the live editor, open `http//DOCKER_HOST:3000/editor/`, there's no link for it on the startpage.
 
+Checkout the configuration file [fly.toml](https://github.com/reorx/sui2/blob/master/fly.toml) as an example for how to deploy the Docker image to fly.io
+
+### Build Docker Image
+
+Currently, the image has only amd64 and arm64 variants, if your architecture is not one of these,
+please build the image by yourself, simply by running:
+
+```
+docker buildx build -t sui2 .
+```
+
+Notice that BuildKit (buildx) must be used to get the `TARGETARCH` argument,
+see [Automatic platform ARGs in the global scope](https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope)
+
+
 ## `data.json` editing
 
 There's a full example in [data.example.json](https://github.com/reorx/sui2/blob/master/data.example.json),
-it's pretty easy to understand so I not going to write too much about it, maybe a json schema will be created as a supplement in the future.
+it's self explanatory so I'm not going to write too much about it, maybe a json schema will be created as a supplement in the future.
 
 The only thing worth mentioning here is the `icon` attribute,
 it uses the [MDI icon set from Iconify](https://icon-sets.iconify.design/mdi/), you can find any icon you like in this page, and use the name after `mdi:` as the value for the `icon` attribute. For example `mdi:bread-slice` should be used as `"icon": "bread-slice"` in `data.json`.
 
+## Development
+
+Developing the startpage is easy, first clone the project, then run the following:
+
+```bash
+npm install
+
+# start vite dev server
+npm run dev
+```
+
+Developing the live-server is a little bit tricky, `live-server/` is an independent package with an express server and another vite frontend.
+
+```bash
+cd live-server
+npm install
+
+# start the express server on port 3000
+npm run dev-backend
+
+# open another shell, then start vite dev server
+npm run dev
+```
+
+The output of `npm run dev` looks like this:
+
+```
+  ➜  Local:   http://localhost:5173/editor/
+```
+
+You can now open this URL to start developing live-server.
+The fetch requests of `/api` and `/preview` on this page will be proxied to
+the express server on port 3000. The default data folder is at `live-server/data/`.
+
 ## TODO
 
-some other features I plan to work in the future, PRs are welcome.
+Some other features I plan to work in the future, PRs are welcome.
 
+- [ ] Custom theme editor
 - [ ] Support dynamically render the page from `data.json`. This makes it possible to host a sui2 distribution that is changable without the building tools.
 - [ ] A chrome extension that shows sui2 in a popup.
 - [ ] Add new tab support for the chrome extension.
